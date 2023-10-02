@@ -1,9 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Nav } from "./Nav";
+import "../App.css";
 
 export const Root = () => (
   <>
     <Nav />
-    <Outlet />
+    <div className="app-container">
+      <Outlet />
+    </div>
   </>
 );

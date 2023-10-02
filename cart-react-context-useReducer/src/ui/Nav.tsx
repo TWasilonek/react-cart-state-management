@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+import cartIcon from "../assets/cart-icon.png";
+import "../App.css";
 
 export const Nav = () => {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="nav-container">
+      <ul className="nav">
+        <li className="nav-item">
           <Link to="/">Products</Link>
         </li>
-        <li>
-          <Link to="/cart">Cart</Link>
+        <li className="nav-item">
+          <Link to="/cart">
+            <img src={cartIcon} alt="cart link" className="cart-icon" />
+          </Link>
         </li>
       </ul>
     </nav>

@@ -5,7 +5,6 @@ import { ProductsList } from "./products/ProductsList";
 import { Cart } from "./cart/Cart";
 import { CartProvider } from "./store/cartContext";
 import { Root } from "./ui/Root";
-import "./App.css";
 
 const router = createBrowserRouter([
   {
