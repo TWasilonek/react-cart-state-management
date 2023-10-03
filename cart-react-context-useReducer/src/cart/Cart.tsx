@@ -11,7 +11,6 @@ export const Cart = () => {
   const dispatch = useCartDispatch();
 
   const handleIncrementQuantity = (cartItem: CartItem) => {
-    console.log("handleAddQuantity fired with ", cartItem);
     dispatch &&
       dispatch({
         type: CART_ACTIONS.INCREMENT_QUANTITY,

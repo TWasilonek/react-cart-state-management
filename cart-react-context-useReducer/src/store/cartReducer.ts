@@ -57,6 +57,7 @@ const incrementQuantity = (state: CartState, item: CartItem): CartState => {
     return { ...state };
   }
 
+  // ugly, because we didn't deeply cloned the newCartItems array
   const newItem = { ...newCartItems[itemIndex] };
   newItem.quantity++;
   newCartItems[itemIndex] = newItem;
