@@ -32,6 +32,25 @@
   font-weight: bold;
 }
 
+.cart-link {
+  position: relative;
+}
+
+.cart-items-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: lightskyblue;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .cart-icon {
   width: 32px;
   height: auto;

@@ -4,12 +4,7 @@ import { useCart, useCartDispatch } from "../store/cartContext";
 import { CartItem } from "../types";
 import TrashIcon from "../assets/trash.svg";
 import { CART_ACTIONS } from "../store/cartReducer";
-
-const getTotal = (cartItems: CartItem[]) => {
-  return cartItems.reduce((total, cartItem) => {
-    return total + cartItem.product.price * cartItem.quantity;
-  }, 0);
-};
+import { getTotalPrice } from "../helpers/cartHelpers";
 
 export const Cart = () => {
   const { cartItems } = useCart();
@@ -62,6 +57,8 @@ export const Cart = () => {
                   src={cartItem.product.imageUrl}
                   alt={cartItem.product.name}
                   className="product-image"
+                  width="60"
+                  height="60"
                 />
                 <h4>
                   <Link to="#">{cartItem.product.name}</Link>
@@ -101,7 +98,7 @@ export const Cart = () => {
             <td colSpan={3} className="total-cell">
               Total: &nbsp;
               <span className="total">
-                {formatCurrency(getTotal(cartItems))}
+                {formatCurrency(getTotalPrice(cartItems))}
               </span>
             </td>
           </tr>
