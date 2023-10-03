@@ -1,0 +1,160 @@
+#root {
+  width: 100%;
+}
+
+.app-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.nav-container {
+  display: flex;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 1em #00000022;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 0 0 20px;
+}
+.nav-item a {
+  text-decoration: none;
+  color: #242424;
+  font-weight: bold;
+}
+
+.cart-link {
+  position: relative;
+}
+
+.cart-items-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: lightskyblue;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon {
+  width: 32px;
+  height: auto;
+}
+
+.product-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 20px 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 16px #eee;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-table td {
+  padding: 8px;
+}
+
+.cart-table .product-head {
+  display: flex;
+  align-items: center;
+}
+
+.cart-table .product-image {
+  width: 60px;
+  height: auto;
+  margin-right: 8px;
+}
+
+.cart-table .total-cell {
+  text-align: right;
+  font-size: 24px;
+}
+
+.cart-table .product-data-cell {
+  text-align: right;
+}
+
+.product-row .delete-btn {
+  padding: 5px 0;
+  border: none;
+  margin-right: 15px;
+}
+
+.product-row .delete-btn:hover,
+.product-row .delete-btn:active {
+  background-color: transparent;
+  border: none;
+}
+
+.product-row .icon {
+  width: 22px;
+}
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+  float: right;
+}
+
+.product-quantity .product-quantity_value {
+  margin: 0;
+  font-size: 16px;
+  padding: 10px 20px;
+  text-align: center;
+  border-top: 1px solid #242424;
+  border-bottom: 1px solid #242424;
+  line-height: initial;
+}
+
+.product-quantity button {
+  border-radius: 0;
+}
+
+.product-quantity .btn-left {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.product-quantity .btn-right {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.total {
+  font-weight: bold;
+}
