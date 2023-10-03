@@ -17,33 +17,15 @@ export const Cart = () => {
   const dispatch = useAppDispatch();
 
   const handleIncrementQuantity = (cartItem: CartItem) => {
-    // dispatch &&
-    //   dispatch({
-    //     type: CART_ACTIONS.INCREMENT_QUANTITY,
-    //     payload: { ...cartItem },
-    //   });
     dispatch(incrementQuantity({ ...cartItem }));
   };
 
   const handleDecrementQuantity = (cartItem: CartItem) => {
-    // dispatch &&
-    //   dispatch({
-    //     type: CART_ACTIONS.DECREMENT_QUANTITY,
-    //     payload: { ...cartItem },
-    //   });
     dispatch(decrementQuantity({ ...cartItem }));
   };
 
   const handleRemoveItem = (cartItem: CartItem) => {
     dispatch(removeItem({ ...cartItem }));
-    // dispatch &&
-    //   dispatch({
-    //     type: CART_ACTIONS.REMOVE_ITEM,
-    //     payload: {
-    //       product: { ...cartItem.product },
-    //       quantity: 0,
-    //     },
-    //   });
   };
 
   return (

@@ -63,7 +63,7 @@ const decrementQuantityReducer = (
 };
 
 export const cartSlice = createSlice({
-  name: "counter",
+  name: "cart",
   initialState,
   reducers: {
     addItem: addItemReducer,
