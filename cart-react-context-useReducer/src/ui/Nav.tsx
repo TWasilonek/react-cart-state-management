@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import cartIcon from "../assets/cart-icon.png";
+import cartIcon from "../assets/cart.svg";
 import "../App.css";
 
 export const Nav = () => {

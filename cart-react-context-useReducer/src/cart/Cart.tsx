@@ -1,35 +1,46 @@
 import { Link } from "react-router-dom";
-import { CartItem } from "../types";
 import { formatCurrency } from "../helpers/formatCurrency";
+import { useCart, useCartDispatch } from "../store/cartContext";
+import { CartItem } from "../types";
+import TrashIcon from "../assets/trash.svg";
+import { CART_ACTIONS } from "../store/cartReducer";
 
-const cartItems: CartItem[] = [
-  {
-    product: {
-      id: "1",
-      name: "Product 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      price: 12,
-      imageUrl: "https://source.unsplash.com/random/200x200?sig=1",
-    },
-    quantity: 1,
-  },
-  {
-    product: {
-      id: "2",
-      name: "Product 2",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      price: 22,
-      imageUrl: "https://source.unsplash.com/random/200x200?sig=2",
-    },
-    quantity: 2,
-  },
-];
+const getTotal = (cartItems: CartItem[]) => {
+  return cartItems.reduce((total, cartItem) => {
+    return total + cartItem.product.price * cartItem.quantity;
+  }, 0);
+};
 
 export const Cart = () => {
-  const getTotal = () => {
-    return cartItems.reduce((total, cartItem) => {
-      return total + cartItem.product.price * cartItem.quantity;
-    }, 0);
+  const { cartItems } = useCart();
+  const dispatch = useCartDispatch();
+
+  const handleIncrementQuantity = (cartItem: CartItem) => {
+    console.log("handleAddQuantity fired with ", cartItem);
+    dispatch &&
+      dispatch({
+        type: CART_ACTIONS.INCREMENT_QUANTITY,
+        payload: { ...cartItem },
+      });
+  };
+
+  const handleDecrementQuantity = (cartItem: CartItem) => {
+    dispatch &&
+      dispatch({
+        type: CART_ACTIONS.DECREMENT_QUANTITY,
+        payload: { ...cartItem },
+      });
+  };
+
+  const handleRemoveItem = (cartItem: CartItem) => {
+    dispatch &&
+      dispatch({
+        type: CART_ACTIONS.REMOVE_ITEM,
+        payload: {
+          product: { ...cartItem.product },
+          quantity: 0,
+        },
+      });
   };
 
   return (
@@ -39,13 +50,13 @@ export const Cart = () => {
         <thead>
           <tr>
             <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th className="product-data-cell">Quantity</th>
+            <th className="product-data-cell">Price</th>
           </tr>
         </thead>
         <tbody>
           {cartItems.map((cartItem) => (
-            <tr key={cartItem.product.id}>
+            <tr key={cartItem.product.id} className="product-row">
               <td className="product-head">
                 <img
                   src={cartItem.product.imageUrl}
@@ -56,26 +67,44 @@ export const Cart = () => {
                   <Link to="#">{cartItem.product.name}</Link>
                 </h4>
               </td>
-              <td>
+              <td className="product-data-cell">
                 <div className="product-quantity">
-                  <button className="btn-left">-</button>
+                  <button
+                    className="btn-left"
+                    onClick={() => handleDecrementQuantity(cartItem)}
+                  >
+                    -
+                  </button>
                   <span className="product-quantity_value">
                     {cartItem.quantity}
                   </span>
-                  <button className="btn-right">+</button>
+                  <button
+                    className="btn-right"
+                    onClick={() => handleIncrementQuantity(cartItem)}
+                  >
+                    +
+                  </button>
                 </div>
+                <button
+                  onClick={() => handleRemoveItem(cartItem)}
+                  className="delete-btn"
+                >
+                  <img src={TrashIcon} alt="Remove" className="icon" />
+                </button>
               </td>
-              <td>
+              <td className="product-data-cell">
                 {formatCurrency(cartItem.product.price * cartItem.quantity)}
               </td>
             </tr>
           ))}
-          <td colSpan={2} className="total-cell">
-            Total:
-          </td>
-          <td>
-            <span className="total">{formatCurrency(getTotal())}</span>
-          </td>
+          <tr>
+            <td colSpan={3} className="total-cell">
+              Total: &nbsp;
+              <span className="total">
+                {formatCurrency(getTotal(cartItems))}
+              </span>
+            </td>
+          </tr>
         </tbody>
       </table>
     </>
