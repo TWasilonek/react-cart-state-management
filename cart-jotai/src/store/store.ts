@@ -16,7 +16,7 @@ export const cartTotalAtom = atom((get) => {
 });
 
 // Write only atom = this is two way data binding
-// Be careful with this pattern, you may sometimes just do the logic in the component
+// Be careful with this pattern, you may sometimes just do the logic in the component, or in the atom setter function (read/write atom)
 export const addItemAtom = atom(null, (get, set, item: CartItem) => {
   const items = get(cartItemsAtom);
   const itemIndex = findItemIndex(items, item);

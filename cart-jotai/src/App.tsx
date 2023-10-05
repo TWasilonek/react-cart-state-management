@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 ]);
 /*
  * The Provider and Store are not necessary
- * unless you want some initialization and different states for subtres
+ * unless you want some initialization and different states for subtrees
  * https://jotai.org/docs/core/store
  * https://jotai.org/docs/core/provider
  */
