@@ -1,11 +1,12 @@
 import * as React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import { ProductsList } from "./products/ProductsList";
 import { Cart } from "./cart/Cart";
 import { Root } from "./ui/Root";
-import { store } from "./store";
+import { persistor, store } from "./store";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,9 @@ function App() {
   return (
     <React.StrictMode>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <PersistGate persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   );
