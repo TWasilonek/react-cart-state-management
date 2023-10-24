@@ -5,10 +5,21 @@ import { productsMock } from "../mocks/productsMock";
 import { Product } from "../types";
 import { useAtom } from "jotai";
 import { addItemAtom, cartItemsAtom } from "../store/store";
+import { useEffect, useState } from "react";
 
 export const ProductsList = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const [cartItems] = useAtom(cartItemsAtom);
   const [, addItem] = useAtom(addItemAtom);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      // normally we would fetch products from an API
+      const products = await Promise.resolve(productsMock);
+      setProducts(products);
+    };
+    fetchProducts();
+  }, []);
 
   const handleAddToCart = (product: Product) => {
     addItem({ product, quantity: 1 });
@@ -16,7 +27,7 @@ export const ProductsList = () => {
 
   return (
     <ul className="product-list">
-      {productsMock.map((product) => (
+      {products.map((product) => (
         <li key={product.id} className="product-card">
           <img
             src={product.imageUrl}

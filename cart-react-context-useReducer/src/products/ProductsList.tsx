@@ -5,10 +5,21 @@ import { productsMock } from "../mocks/productsMock";
 import { useCart, useCartDispatch } from "../store/cartContext";
 import { CART_ACTIONS } from "../store/cartReducer";
 import { Product } from "../types";
+import { useEffect, useState } from "react";
 
 export const ProductsList = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const dispatch = useCartDispatch();
   const { cartItems } = useCart();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      // normally we would fetch products from an API
+      const products = await Promise.resolve(productsMock);
+      setProducts(products);
+    };
+    fetchProducts();
+  }, []);
 
   const handleAddToCart = (product: Product) => {
     dispatch &&
@@ -23,7 +34,7 @@ export const ProductsList = () => {
 
   return (
     <ul className="product-list">
-      {productsMock.map((product) => (
+      {products.map((product) => (
         <li key={product.id} className="product-card">
           <img
             src={product.imageUrl}

@@ -9,10 +9,21 @@ import {
   selectCartItems,
   addItem,
 } from "../store";
+import { useEffect, useState } from "react";
 
 export const ProductsList = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      // normally we would fetch products from an API
+      const products = await Promise.resolve(productsMock);
+      setProducts(products);
+    };
+    fetchProducts();
+  }, []);
 
   const handleAddToCart = (product: Product) => {
     dispatch(addItem({ product, quantity: 1 }));
@@ -20,7 +31,7 @@ export const ProductsList = () => {
 
   return (
     <ul className="product-list">
-      {productsMock.map((product) => (
+      {products.map((product) => (
         <li key={product.id} className="product-card">
           <img
             src={product.imageUrl}
